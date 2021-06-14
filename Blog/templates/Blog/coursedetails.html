@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+<script language="JavaScript" type="text/JavaScript">
+    $(document).ready(function () {
+        $('#btnBack').click(function () {
+            history.go(-1);
+        })
+    }); 
+</script> 
+
+<h2>Course Details</h2>
+<p>   
+    
+    <b>Course Subject:  </b>{{course_list.courseSubject}}<br>
+    <b>Course Catalog:  </b>{{course_list.courseCatalog}}<br>
+    <b>Course Term:  </b>{{course_list.courseTerm}}<br>
+    <b>Course Title:  </b>{{course_list.courseTitle}}<br>
+    <b>Course Units:  </b>{{course_list.courseUnits}}<br>
+    <b>Course Instructor:  </b>{{course_list.courseInstructor}}<br>
+    <b>Course Grades:  </b>{{course_list.courseGrades}}<br>
+
+</p>
+<p>
+    <button type="button" id='btnBack' class='btn'>Back</button>
+</p>
+{% endblock content %} 
+

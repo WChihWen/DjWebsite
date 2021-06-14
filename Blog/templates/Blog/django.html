@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+{% block content %} 
+
+<p>These notes, google docs, were created by myself when studying in IT112 at Seattle Central College.</p>
+<h2 class="subheader">Django History</h2>
+<p>Django was design and developed by Lawrence journal world in 2003 and publicly released under BSD license in July 2005. Currently, DSF (Django Software Foundation) maintains its development and release cycle.</p>
+<h2 class="subheader">How to build a website of Django Project in VS code with Python</h2>
+<ol>
+    {% for p in django_list %}
+        <li ><a href="{{ p.djangoprojectUrl }}" target="_blank">{{ p.djangoprojectTitle }}</a></li>
+    {% endfor %}   
+</ol> 
+
+
+
+{% endblock content %} 

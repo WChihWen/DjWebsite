@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+{% block content %} 
+<script language="JavaScript" type="text/JavaScript">
+
+    $(document).ready(function () {
+        $('#btnNew').click(function () {
+            location.href = "{% url 'newCourse' %}";
+        })
+    }); 
+</script> 
+
+<p>This page notes the couses which I study at Seattle Central College.</p>
+<p>
+<button type="button" id='btnNew' class='btn'>Add Course</button>  
+<table class="Grid" width="70%">
+    <tr>
+        <th style="width:150px">Term</th>        
+        <th style="width:80px">Subject</th>
+        <th style="width:150px">Catalog Nbr</th>
+        <th>Title</th>
+    </tr>
+
+    {% for p in course_list %}
+    <tr>
+        <td>{{ p.courseTerm }}</td>
+        <td>{{ p.courseSubject }}</td>
+        <td>{{ p.courseCatalog }}</td>
+        <td><a href="{% url 'coursedetails' id=p.id  %}">{{ p.courseTitle }}</a></td>
+    </tr>
+    {% endfor %} 
+</table>
+</p>
+{% endblock content %} 

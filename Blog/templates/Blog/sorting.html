@@ -1,0 +1,103 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% load static %}
+<script>
+    var myLang = 'Python';
+    $( function() {
+        //hljs.initHighlightingOnLoad(); // load code space style
+        loadinitialpage();
+        defineClickEvent();   
+        showdiv('History');
+    }); 
+
+    function loadinitialpage(){    
+        $.ajax({
+            url : "{%  static  'txt/Python_Al_Sorting.txt'  %}" ,
+                dataType: "text",
+                success : function (data) {
+                    $("#divshowhistory").html(data);
+                    $("#h4History").html("Sorting Algorithm");
+                    showdiv('History');
+                }
+        }); 
+    }
+    function defineClickEvent(){
+        $("#li-history").click(function() {
+            loadinitialpage();
+        });
+        $("#li-BubbleSort").click(function() {
+            loadtxt("{%  static  'txt/Python_Al_BubbleSort.txt'  %}",  myLang + " Bubble Sort");      
+            var strInfo = "Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.";
+            $("#divcodeinfo").html(strInfo);
+        });
+        $("#li-SelectionSort").click(function() {
+            loadtxt("{%  static  'txt/Python_Al_SelectionSort.txt'  %}", myLang + " Selection Sort");   
+            var strInfo = "Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time.  It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.";
+            $("#divcodeinfo").html(strInfo); 
+        });
+        $("#li-InsertionSort").click(function() {
+            loadtxt("{%  static  'txt/Python_Al_InsertionSort.txt'  %}", myLang + " Insertion Sort");
+            var strInfo = "In computer science, selection sort is an in-place comparison sorting algorithm. It has an O(n2) time complexity, which makes it inefficient on large lists, and generally performs worse than the similar insertion sort. Selection sort is noted for its simplicity and has performance advantages over more complicated algorithms in certain situations, particularly where auxiliary memory is limited.";
+            $("#divcodeinfo").html(strInfo);    
+        });
+    }
+
+    function loadtxt(_file, _h4txt){
+        $.ajax({
+            url : _file,
+                dataType: "text",
+                success : function (data) {
+                $("#mycode").html(data);
+                $("#h4Code").html(_h4txt);
+                hljs.highlightAll(); // load code space style     
+                showdiv('Code');
+                }
+            }); 
+    }
+
+    function showdiv(_type){
+        if (_type == 'History'){
+            $("#divhistory").show(); 
+            $("#divcode").hide(); 
+        } else {
+            $("#divhistory").hide(); 
+            $("#divcode").show();
+        }    
+    }
+</script>
+
+
+<div class="wrapper">
+    <aside class="list-type2">
+        <ol>
+            <li id="li-history"><a href="#">Sorting Algorithm</a></li>
+            <li id="li-BubbleSort"><a href="#">Bubble Sort</a></li>
+            <li id="li-SelectionSort"><a href="#">Selection Sort</a></li>
+            <li id="li-InsertionSort"><a href="#">Insertion Sort</a></li>
+        </ol>   
+    </aside>
+
+    <section>
+        <div id="divhistory">
+            <h4 id="h4History">Sorting Algorithm</h4>
+            <div id="divshowhistory">
+                Sorting is the process of placing elements from a collection in some kind of order. For example, a list of words could be sorted alphabetically or by length. A list of cities could be sorted by population, by area, or by zip code. We have already seen a number of algorithms that were able to benefit from having a sorted list (recall the final anagram example and the binary search).
+                <br><br>
+                There are many, many sorting algorithms that have been developed and analyzed. This suggests that sorting is an important area of study in computer science. Sorting a large number of items can take a substantial amount of computing resources. Like searching, the efficiency of a sorting algorithm is related to the number of items being processed. For small collections, a complex sorting method may be more trouble than it is worth. The overhead may be too high. On the other hand, for larger collections, we want to take advantage of as many improvements as possible. In this section we will discuss several sorting techniques and compare them with respect to their running time.
+                <br><br>
+                Before getting into specific algorithms, we should think about the operations that can be used to analyze a sorting process. First, it will be necessary to compare two values to see which is smaller (or larger). In order to sort a collection, it will be necessary to have some systematic way to compare values to see if they are out of order. The total number of comparisons will be the most common way to measure a sort procedure. Second, when values are not in the correct position with respect to one another, it may be necessary to exchange them. This exchange is a costly operation and the total number of exchanges will also be important for evaluating the overall efficiency of the algorithm.
+                <br><br>
+                Information from <a href="https://runestone.academy/runestone/books/published/pythonds/SortSearch/sorting.html" target="_blank">pythonds</a>, Problem Solving with Algorithms and Data Structures using Python.
+
+            </div>
+        </div>
+        <div id="divcode">
+            <h4 id="h4Code"></h4>
+            <div id="divcodeinfo"></div>
+            <pre><code id="mycode" class="python"></code></pre>
+        </div>
+        
+    </section>    
+<div>
+
+{% endblock content %} 

@@ -1,0 +1,15 @@
+'''Insertion Sort'''
+def insertionSort(mylist):
+    for index in range(1, len(mylist)):
+        currentvalue = mylist[index]
+        position = index
+
+        while position > 0 and mylist[position - 1] > currentvalue:
+            mylist[position] = mylist[position - 1]
+            position = position - 1
+
+        mylist[position] = currentvalue
+
+mylist = [84,83,2,9,7,50,40,60,87]
+insertionSort(mylist)
+print(mylist)
